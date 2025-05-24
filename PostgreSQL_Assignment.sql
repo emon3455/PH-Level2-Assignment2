@@ -1,4 +1,5 @@
 -- Active: 1747594140908@@127.0.0.1@5432@conservation_db
+-- Creating Database
 CREATE DATABASE conservation_db;
 
 -- creating rangers table
@@ -54,57 +55,41 @@ SELECT * from species;
 
 SELECT * from sightings;
 
--- Problem-1
--- 1️⃣ Register a new ranger with provided data with name = 'Derek Fox' and region = 'Coastal Plains'
--- solution:
+-- Problem 1
 INSERT INTO rangers (ranger_id,name, region) VALUES (4,'Derek Fox', 'Coastal Plains') 
 
--- Problem-2
--- 2️⃣ Count unique species ever sighted.
--- Solution:
+-- Problem 2
 SELECT count(DISTINCT species_id) AS "unique_species_count" FROM sightings;
 
--- Problem-3
--- 3️⃣ Find all sightings where the location includes "Pass".
--- Solution:
+-- Problem 3
 SELECT * FROM sightings
     WHERE location ILIKE '%Pass%'
 
--- Problem-4
--- 4️⃣ List each ranger's name and their total number of sightings.
--- Solution:
+-- Problem 4
 SELECT r.name, COUNT(s.sighting_id) AS "total_sightings" FROM rangers AS r
     INNER JOIN sightings AS s ON r.ranger_id = s.ranger_id
         GROUP BY r.name
             ORDER BY r.name ASC;
 
--- Problem-5
--- 5️⃣ List species that have never been sighted.
--- Solution:
+-- Problem 5
 SELECT common_name FROM species AS sp
     WHERE NOT EXISTS(
         SELECT * FROM sightings AS si
             WHERE si.species_id = sp.species_id
     )
         
--- Problem-6
--- 6️⃣ Show the most recent 2 sightings.
--- Solution:
+-- Problem 6
 SELECT common_name, sighting_time, name FROM species AS sp
     INNER JOIN sightings AS si ON si.species_id= sp.species_id
         INNER JOIN rangers AS ra ON si.ranger_id= ra.ranger_id
         ORDER BY si.sighting_time DESC
             LIMIT 2;
 
--- Problem-7
--- 7️⃣ Update all species discovered before year 1800 to have status 'Historic'.
--- Solution:
+-- Problem 7
 UPDATE species SET conservation_status = 'Historic'
     WHERE EXTRACT(YEAR FROM discovery_date) < 1800;
 
--- Problem-8
--- 8️⃣ Label each sighting's time of day as 'Morning', 'Afternoon', or 'Evening'.
--- Solution:
+-- Problem 8
 CREATE OR REPLACE FUNCTION get_time_of_day(sighting_time TIMESTAMP)
 RETURNS TEXT AS $$
 BEGIN
@@ -121,9 +106,7 @@ $$ LANGUAGE plpgsql;
 SELECT sighting_id, get_time_of_day(sighting_time) AS time_of_day FROM sightings
     ORDER BY sighting_id;
 
--- Problem-9
--- 9️⃣ Delete rangers who have never sighted any species
--- Solution:
+-- Problem 9
 DELETE FROM rangers AS ra WHERE NOT EXISTS(
     SELECT * FROM sightings AS si
         WHERE  si.ranger_id = ra.ranger_id
