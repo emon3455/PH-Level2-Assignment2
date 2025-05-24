@@ -1,4 +1,4 @@
-# What is PostgreSQL ?
+# 1. What is PostgreSQL ?
 
 PostgreSQL is one of the most powerful, versatile, and widely used open-source relational database management systems (RDBMS) in the world today. Whether you're a developer, database administrator, or an enthusiast eager to understand databases better, this article dives deep into what PostgreSQL is, why it matters, and what makes it stand out from the crowd.
 
@@ -38,7 +38,7 @@ If you want a database that is reliable, extensible, and continuously evolving, 
 
 ---
 
-# What is the Purpose of a Database Schema in PostgreSQL?
+# 2.  What is the Purpose of a Database Schema in PostgreSQL?
 
 A **database schema** in PostgreSQL serves as a logical container or namespace within a database that organizes and groups database objects such as tables, views, indexes, sequences, and functions. Understanding schemas is essential for managing complex databases effectively.
 
@@ -73,7 +73,7 @@ Proper use of schemas leads to cleaner, more secure, and more maintainable datab
 ---
 
 
-# Primary Key vs Foreign Key in PostgreSQL
+# 3. Primary Key vs Foreign Key in PostgreSQL
 
 **Primary Key (PK):**  
 A Primary Key is a column or a set of columns in a table that uniquely identifies each row. It enforces uniqueness and does not allow NULL values, ensuring every record can be uniquely identified.
@@ -95,7 +95,7 @@ A Foreign Key is a column or set of columns in one table that refers to the Prim
 
 ---
 
-# Difference Between VARCHAR and CHAR Data Types in PostgreSQL
+# 4. Difference Between VARCHAR and CHAR Data Types in PostgreSQL
 
 **CHAR (Character):**  
 A fixed-length character data type that always stores exactly *n* characters. If the input string is shorter than *n*, it is right-padded with spaces to fill the length.
@@ -117,7 +117,7 @@ A variable-length character data type that stores strings up to *n* characters w
 
 ---
 
-# Purpose of the WHERE Clause in a SELECT Statement
+# 5. Purpose of the WHERE Clause in a SELECT Statement
 
 The **WHERE** clause in a SQL `SELECT` statement is used to filter rows returned by the query based on specified conditions. It allows you to retrieve only those records that meet certain criteria, making data retrieval more precise and efficient.
 
